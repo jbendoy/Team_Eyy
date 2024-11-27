@@ -171,7 +171,7 @@ export function Order() {
                       <div className="min-h-0 flex-1 overflow-y-auto">
                         <div className="bg-[#F97108] p-4">
                           <div className="flex items-start justify-between">
-                            <Dialog.Title className="text-lg font-medium text-white">Cart</Dialog.Title>
+                            <Dialog.Title className="text-lg font-medium text-white">Order Summary</Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
                                 type="button"
