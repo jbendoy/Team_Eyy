@@ -9,7 +9,7 @@ function StaffMenu() {
     price: "",
     category: "",
     image: null,
-    description: "", 
+    description: "",
   });
 
   const handleInputChange = (e) => {
@@ -22,12 +22,24 @@ function StaffMenu() {
   };
 
   const handleAddProduct = () => {
-    if (!newProduct.name || !newProduct.price || !newProduct.category || !newProduct.image || !newProduct.description) {
+    if (
+      !newProduct.name ||
+      !newProduct.price ||
+      !newProduct.category ||
+      !newProduct.image ||
+      !newProduct.description
+    ) {
       alert("Please fill in all fields and upload an image!");
       return;
     }
     setProducts([...products, newProduct]);
-    setNewProduct({ name: "", price: "", category: "", image: null, description: "" });
+    setNewProduct({
+      name: "",
+      price: "",
+      category: "",
+      image: null,
+      description: "",
+    });
   };
 
   const categorizedProducts = {
@@ -45,13 +57,13 @@ function StaffMenu() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Sidebar */}
       <div className="flex">
-        <div className="bg-orange-100 w-64 py-6 px-4 shadow-md">
+        <div className="bg-orange-100 w-64 py-6 px-4 shadow-md min-h-screen">
           <h2 className="text-2xl font-bold text-orange-600 mb-8 text-center">
             Dashboard
           </h2>
           <div className="space-y-4">
-          <button
-              onClick={() => navigate("/Staff")}
+            <button
+              onClick={() => navigate("/StaffDashboard")}
               className="block w-full px-4 py-3 text-lg font-semibold text-orange-500 bg-white border border-orange-300 rounded-md hover:bg-orange-200 transition"
             >
               Home
@@ -69,7 +81,13 @@ function StaffMenu() {
               Menu
             </button>
             <button
-              onClick={() => navigate("/Order_History")}
+              onClick={() => navigate("/completed_order")}
+              className="block w-full px-4 py-3 text-lg font-semibold text-orange-500 bg-white border border-orange-300 rounded-md hover:bg-orange-200 transition"
+            >
+              Completed Orders
+            </button>
+            <button
+              onClick={() => navigate("/OrderHistory")}
               className="block w-full px-4 py-3 text-lg font-semibold text-orange-500 bg-white border border-orange-300 rounded-md hover:bg-orange-200 transition"
             >
               Order History
@@ -78,13 +96,21 @@ function StaffMenu() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-grow bg-white p-8 shadow-inner">
+        <div className="flex-grow bg-white p-8 shadow-inner relative">
+          {/* Logout Button */}
+          <button
+            onClick={() => navigate("/signin")}
+            className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 text-lg font-semibold text-white bg-orange-500 rounded-md shadow hover:bg-orange-600 transition"
+          >
+            Logout
+          </button>
+
           <h1 className="text-3xl font-bold text-orange-600 text-center mb-8">
             Canteen Menu
           </h1>
 
           {/* Add New Product Form */}
-          <div className="bg-gray-100 p-6 rounded-lg shadow border border-orange-500 mb-8">
+          <div className="bg-gray-100 p-6 rounded-lg shadow border border-orange-500 mb-6">
             <h2 className="text-xl font-semibold text-gray-700 mb-4">
               Add New Product
             </h2>
@@ -146,7 +172,9 @@ function StaffMenu() {
             </h2>
             {Object.keys(categorizedProducts).map((category) => (
               <div key={category} className="mb-6">
-                <h3 className="text-lg font-bold text-orange-500 mb-4">{category}</h3>
+                <h3 className="text-lg font-bold text-orange-500 mb-4">
+                  {category}
+                </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {categorizedProducts[category].map((product, index) => (
                     <div key={index} className="bg-white p-4 rounded-lg shadow">
@@ -155,9 +183,11 @@ function StaffMenu() {
                         alt={product.name}
                         className="w-full h-32 object-cover rounded-md mb-3"
                       />
-                      <h4 className="font-semibold text-gray-800">{product.name}</h4>
+                      <h4 className="font-semibold text-gray-800">
+                        {product.name}
+                      </h4>
                       <p className="text-gray-600">Price: ₱{product.price}</p>
-                      <p className="text-gray-600">{product.description}</p> {/* Display description */}
+                      <p className="text-gray-600">{product.description}</p>
                     </div>
                   ))}
                   {categorizedProducts[category].length === 0 && (

@@ -14,13 +14,12 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import burgerImage from "../image/burger.png";
 
-export function SignIn() {
+export function StaffSignIn() {
   const navigate = useNavigate();
   const [idNumber, setIdNumber] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isStaff, setIsStaff] = useState(false); // To differentiate staff login
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -35,15 +34,12 @@ export function SignIn() {
     }
 
     try {
-      // Simulating login validation
+      
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (isStaff && password === "staff123") {
+      if (password === "staff123") {
         console.log("Staff Login Successful!");
-        navigate("/staff-dashboard"); // Redirect to staff dashboard
-      } else if (!isStaff && password === "test123") {
-        console.log("Login Successful!");
-        navigate("/home"); // Regular user home page
+        navigate("/StaffDashboard"); 
       } else {
         setError("Login failed. Please check your ID number and password.");
       }
@@ -62,7 +58,7 @@ export function SignIn() {
         <div className="w-full lg:w-3/5 mt-24">
           <div className="text-center">
             <Typography variant="h2" className="font-bold mb-4">
-              Log in
+              Staff Log in
             </Typography>
             <Typography
               variant="body1"
@@ -146,15 +142,6 @@ export function SignIn() {
                 Register Now
               </Button>
             </Link>
-
-            <div className="flex justify-center mt-4">
-              <Button
-                className="mt-6 bg-[#F97108] text-white"
-                onClick={() => navigate("/staff/signin")} // Directs to /staff/signin
-              >
-                Sign in as Staff
-              </Button>
-            </div>
           </form>
         </div>
 
@@ -193,4 +180,4 @@ export function SignIn() {
   );
 }
 
-export default SignIn;
+export default StaffSignIn;

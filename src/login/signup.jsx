@@ -53,12 +53,12 @@ export function SignUp() {
   };
 
   const validateIdNumber = (idNumber) => {
-    const idNumberRegex = /^\d{2}-\d{4}-\d{3}$/;
+    const idNumberRegex = /^\d{2}-\d{4}-\d{3}$/; // Make sure the ID follows the proper format
     return idNumberRegex.test(idNumber);
   };
 
   const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[A-Z]).+$/;
+    const passwordRegex = /^(?=.*[A-Z]).+$/; // Password must contain at least 1 uppercase letter
     return passwordRegex.test(password);
   };
 
@@ -93,7 +93,9 @@ export function SignUp() {
       </div>
       <div className="w-full lg:w-3/5 flex flex-col items-center justify-center">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Join Us Today</Typography>
+          <Typography variant="h2" className="font-bold mb-4">
+            Join Us Today
+          </Typography>
           <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">
             Enter your ID Number and password to register.
           </Typography>
@@ -134,6 +136,7 @@ export function SignUp() {
             />
             {errors.idNumber && <Typography variant="small" color="red">{errors.idNumber}</Typography>}
           </div>
+
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
               Password
@@ -152,6 +155,7 @@ export function SignUp() {
             />
             {errors.password && <Typography variant="small" color="red">{errors.password}</Typography>}
           </div>
+
           <Checkbox
             label={
               <Typography
@@ -170,6 +174,7 @@ export function SignUp() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
+          
           <Button
             type="submit"
             className="mt-6 bg-[#F97108]"
